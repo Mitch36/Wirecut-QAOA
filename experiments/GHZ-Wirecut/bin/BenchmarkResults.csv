@@ -1,0 +1,10 @@
+Index;Description;Samples;Qubits;Cuts;Config;Shots;Difference Sum;Hellinger Distance
+0;Pauli wire cut;1000;5;2;<class 'circuit_configurations.circuit_random_gates_configuration.RandomCircuitGatesConfiguration'>;1000;0.1833297876988118;0.16953573114545514
+1;Random Clifford;1000;5;2;<class 'circuit_configurations.circuit_random_gates_configuration.RandomCircuitGatesConfiguration'>;1000;0.14599564961233588;0.147717764974196
+2;Random rotation;1000;5;2;<class 'circuit_configurations.circuit_random_gates_configuration.RandomCircuitGatesConfiguration'>;1000;0.27305387298972067;0.2497678786855634
+3;Pauli wire cut;1000;5;2;<class 'circuit_configurations.circuit_random_gates_configuration.RandomCircuitGatesConfiguration'>;2000;0.12792264133659445;0.13556215644513162
+4;Random Clifford;1000;5;2;<class 'circuit_configurations.circuit_random_gates_configuration.RandomCircuitGatesConfiguration'>;2000;0.09397032204376576;0.10903270696968072
+5;Random rotation;1000;5;2;<class 'circuit_configurations.circuit_random_gates_configuration.RandomCircuitGatesConfiguration'>;2000;0.22490491917329866;0.2296475365903038
+6;Pauli wire cut;1000;5;2;<class 'circuit_configurations.circuit_random_gates_configuration.RandomCircuitGatesConfiguration'>;3000;0.10899060790849081;0.12289853279767812
+7;Random Clifford;1000;5;2;<class 'circuit_configurations.circuit_random_gates_configuration.RandomCircuitGatesConfiguration'>;3000;0.07427187070772284;0.09211505859017394
+8;Random rotation;1000;5;2;<class 'circuit_configurations.circuit_random_gates_configuration.RandomCircuitGatesConfiguration'>;3000;0.21428618272619707;0.2271627528026336
