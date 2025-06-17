@@ -3,7 +3,7 @@
 
 from abc import ABC, abstractmethod
 import pickle
-from quantum_utils import QuantumUtils as qu
+from quantum_utils.src.quantum_utils import QuantumUtils as qu
 
 class DataEntry(ABC):
     """

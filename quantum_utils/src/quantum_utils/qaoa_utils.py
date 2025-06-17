@@ -1,5 +1,5 @@
 import networkx as nx
-from quantum_utils import QuantumUtils as qu
+from .quantum_utils import QuantumUtils as qu
 
 class QaoaUtils:
     @staticmethod

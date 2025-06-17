@@ -1,10 +1,8 @@
 import networkx as nx
 from matplotlib import pyplot as plt # For visualization of the graph
-
-from qaoa_utils import QaoaUtils
-from quantum_utils import QuantumUtils as qu
+from quantum_utils.qaoa_utils import QaoaUtils
+from quantum_utils.quantum_utils import QuantumUtils as qu
        
-
 from enum import Enum
 class Rank(Enum):
     """

@@ -3,7 +3,7 @@ from math import floor
 
 from circuit_configurations.circuit_configuration import CircuitConfiguration
 from original_circuit import Circuit
-from quantum_utils import QuantumUtils as qu
+from quantum_utils.src.quantum_utils import QuantumUtils as qu
 from quantum_wire_cutting import QuantumWireCutUtils as wu
 from subcircuit_contribution import SubCircuitContribution
 from subcircuit_measurement import SubCircuitMeasurement

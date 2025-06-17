@@ -1,15 +1,15 @@
 # Internal libraries
 from graph import Graph
 from experiment_configuration import ExperimentConfiguration as ExpConf
-from qaoa_utils import QaoaUtils
+from quantum_utils.qaoa_utils import QaoaUtils
 from experiment_result import ExperimentResult
 from quantum_backend import QuantumBackEnd
-from quantum_utils import QuantumUtils as qu
+from quantum_utils.quantum_utils import QuantumUtils as qu
 from noise_manager import NoiseManager
 
 # External libraries
 from scipy.optimize import minimize as MinimizeScipy # Used in classical optimization loop
-from spsa import minimize as MinimizeSPSA # Used in classical optimization loop
+import spsa # Used in classical optimization loop
 import pennylane as qml
 from copy import deepcopy # Used for copying the configuration
 
@@ -208,14 +208,14 @@ class Circuit:
 
             match self.graph.name:
                 case "A":
-                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.25, lr_decay=0.602, px_decay=0.166 , px=0.3)                
+                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.25, lr_decay=0.602, px_decay=0.166 , px=0.3)                
                 case "B":
-                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.25, lr_decay=0.602, px_decay=0.166 , px=0.3)    
+                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.25, lr_decay=0.602, px_decay=0.166 , px=0.3)    
                 case "C":
-                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.3, lr_decay=0.602, px_decay=0.105 , px=0.3)    
+                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.3, lr_decay=0.602, px_decay=0.105 , px=0.3)    
                 case _:
                     # Default case, use default paramters
-                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.15, lr_decay=0.602, px_decay=0.166 , px=0.3)    
+                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.15, lr_decay=0.602, px_decay=0.166 , px=0.3)    
         else:
             raise ValueError(f"Classical optimization algorithm not supported; received: {self.config.config['classicalOptimizationAlgorithm']}")
 

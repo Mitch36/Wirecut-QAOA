@@ -1,7 +1,7 @@
 from experiment_configuration import ExperimentConfiguration as ExpConf
 from graph import Graph, Rank
 
-from qaoa_utils import QaoaUtils
+from quantum_utils import QaoaUtils
 
 from matplotlib import pyplot as plt
 

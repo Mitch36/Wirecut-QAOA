@@ -3,7 +3,7 @@ from math import pi
 
 import pennylane as qml
 from pennylane.numpy import random
-from circuit_arguments.circuit_argument_interface import CircuitArgumentInterface
+from circuit_argument_interface import CircuitArgumentInterface
 
 
 class RandomCircuitRotationGate(CircuitArgumentInterface):

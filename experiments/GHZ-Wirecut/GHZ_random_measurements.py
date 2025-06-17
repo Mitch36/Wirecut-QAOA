@@ -7,7 +7,7 @@ import pennylane as qml
 from circuit_configurations.circuit_configuration import CircuitConfiguration
 from original_circuit import Circuit
 from quantum_channel import QuantumChannel
-from quantum_utils import QuantumUtils as qu
+from quantum_utils.src.quantum_utils import QuantumUtils as qu
 from quantum_wire_cutting import QuantumWireCutUtils as qwc
 from subcircuit_contribution import SubCircuitContribution
 from subcircuit_position import SubcircuitPosition

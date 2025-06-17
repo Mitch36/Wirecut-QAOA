@@ -1,0 +1,10 @@
+Metadata-Version: 2.4
+Name: quantum_utils
+Version: 0.1.0
+Summary: Quantum utils
+Author-email: Michel Meulen <michel.meulen@outlook.com>
+Project-URL: Homepage, https://github.com/Mitch36/Wirecut-QAOA
+Keywords: type-checking,mypy,example
+Classifier: Programming Language :: Python :: 3
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown

@@ -1,5 +1,5 @@
 
-from quantum_utils import QuantumUtils as qu
+from quantum_utils.src.quantum_utils import QuantumUtils as qu
 
 
 # Good cases

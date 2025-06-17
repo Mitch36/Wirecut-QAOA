@@ -4,10 +4,10 @@ from experiment_configuration import ExperimentConfiguration as ExpConf
 from graph import Graph
 from experiment_result import ExperimentResult
 from quantum_backend import QuantumBackEnd
-from quantum_wire_cutting import QuantumWireCutUtils as qwu
+from quantum_utils import QuantumWireCutUtils as qwu
 from quantum_utils import QuantumUtils as qu
 from quantum_channel import QuantumChannel
-from qaoa_utils import QaoaUtils
+from quantum_utils import QaoaUtils
 from classical_computer import ClassicalComputer
 from noise_manager import NoiseManager
 
@@ -23,7 +23,7 @@ import pennylane as qml
 from enum import Enum
 
 from scipy.optimize import minimize as MinimizeScipy # Used in classical optimization loop
-from spsa import minimize as MinimizeSPSA # Used in classical optimization loop
+from optimization_utils.spsa import Maximize as MaximizeSPSA
 
 from copy import deepcopy # Used for computing the edge layout on the cut circuit
 
@@ -964,16 +964,16 @@ class WireCutCircuit:
 
             match self.graph.name:
                 case "A":
-                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.2, lr_decay=0.602, px_decay=0.166 , px=0.3)    
+                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.2, lr_decay=0.602, px_decay=0.166 , px=0.3)    
                     # MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.18, lr_decay=0.602, px_decay=0.166 , px=0.2)   
                 case "B":
-                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.25, lr_decay=0.602, px_decay=0.166 , px=0.4)    
+                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.25, lr_decay=0.602, px_decay=0.166 , px=0.4)    
                 case "C":
-                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.25, lr_decay=0.602, px_decay=0.166 , px=0.45)    
+                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.25, lr_decay=0.602, px_decay=0.166 , px=0.45)    
                 case _:
                     # Default case, use default paramters
                     print("Unrecognized graph, using default graph settings")
-                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.18, lr_decay=0.602, px_decay=0.166 , px=0.2)   
+                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.18, lr_decay=0.602, px_decay=0.166 , px=0.2)   
         else:
             raise ValueError(f"Classical optimization algorithm not supported; received: {self.config.config['classicalOptimizationAlgorithm']}")
 
