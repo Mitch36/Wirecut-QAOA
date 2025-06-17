@@ -22,3 +22,4 @@ python -m pip install --upgrade pip
 - qiskit_qasm3_import
 - ipykernel
 - ipywidgets
+- pandas
