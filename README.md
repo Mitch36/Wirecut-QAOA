@@ -21,3 +21,4 @@ python -m pip install --upgrade pip
 - numpy
 - qiskit_qasm3_import
 - ipykernel
+- ipywidgets

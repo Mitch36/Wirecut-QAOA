@@ -23,7 +23,7 @@ import pennylane as qml
 from enum import Enum
 
 from scipy.optimize import minimize as MinimizeScipy # Used in classical optimization loop
-from optimization_utils.spsa import Maximize as MaximizeSPSA
+from optimization_utils.spsa import Minimize as MinimizeSPSA
 
 from copy import deepcopy # Used for computing the edge layout on the cut circuit
 
@@ -964,16 +964,16 @@ class WireCutCircuit:
 
             match self.graph.name:
                 case "A":
-                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.2, lr_decay=0.602, px_decay=0.166 , px=0.3)    
+                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, num_iterations=self.config.config["maxClassicalOptimizationIterations"], a=0.2, alpha=0.602, gamma=0.166 , c=0.3)    
                     # MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.18, lr_decay=0.602, px_decay=0.166 , px=0.2)   
                 case "B":
-                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.25, lr_decay=0.602, px_decay=0.166 , px=0.4)    
+                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, num_iterations=self.config.config["maxClassicalOptimizationIterations"], a=0.25, alpha=0.602, gamma=0.166 , c=0.4)    
                 case "C":
-                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.25, lr_decay=0.602, px_decay=0.166 , px=0.45)    
+                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, num_iterations=self.config.config["maxClassicalOptimizationIterations"], a=0.25, alpha=0.602, gamma=0.166 , c=0.45)    
                 case _:
                     # Default case, use default paramters
                     print("Unrecognized graph, using default graph settings")
-                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.18, lr_decay=0.602, px_decay=0.166 , px=0.2)   
+                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, num_iterations=self.config.config["maxClassicalOptimizationIterations"], a=0.18, alpha=0.602, gamma=0.166 , c=0.2)   
         else:
             raise ValueError(f"Classical optimization algorithm not supported; received: {self.config.config['classicalOptimizationAlgorithm']}")
 

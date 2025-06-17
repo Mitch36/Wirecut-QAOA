@@ -9,7 +9,7 @@ from noise_manager import NoiseManager
 
 # External libraries
 from scipy.optimize import minimize as MinimizeScipy # Used in classical optimization loop
-import spsa # Used in classical optimization loop
+from optimization_utils.spsa import Minimize as MinimizeSPSA
 import pennylane as qml
 from copy import deepcopy # Used for copying the configuration
 
@@ -208,14 +208,14 @@ class Circuit:
 
             match self.graph.name:
                 case "A":
-                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.25, lr_decay=0.602, px_decay=0.166 , px=0.3)                
+                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, num_iterations=self.config.config["maxClassicalOptimizationIterations"], a=0.25, alpha=0.602, gamma=0.166 , c=0.3)                
                 case "B":
-                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.25, lr_decay=0.602, px_decay=0.166 , px=0.3)    
+                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, num_iterations=self.config.config["maxClassicalOptimizationIterations"], a=0.25, alpha=0.602, gamma=0.166 , c=0.3)    
                 case "C":
-                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.3, lr_decay=0.602, px_decay=0.105 , px=0.3)    
+                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, num_iterations=self.config.config["maxClassicalOptimizationIterations"], a=0.3, alpha=0.602, gamma=0.105 , c=0.3)    
                 case _:
                     # Default case, use default paramters
-                    spsa.minimize(self.__RunQuantumCircuit__, gammaGuess + betaGuess, iterations=self.config.config["maxClassicalOptimizationIterations"], lr=0.15, lr_decay=0.602, px_decay=0.166 , px=0.3)    
+                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, num_iterations=self.config.config["maxClassicalOptimizationIterations"], a=0.15, alpha=0.602, gamma=0.166 , c=0.3)    
         else:
             raise ValueError(f"Classical optimization algorithm not supported; received: {self.config.config['classicalOptimizationAlgorithm']}")
 
