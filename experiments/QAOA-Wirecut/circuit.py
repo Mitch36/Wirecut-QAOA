@@ -212,7 +212,7 @@ class Circuit:
                 case "B":
                     MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, num_iterations=self.config.config["maxClassicalOptimizationIterations"], a=0.25, alpha=0.602, gamma=0.166 , c=0.3)    
                 case "C":
-                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, num_iterations=self.config.config["maxClassicalOptimizationIterations"], a=0.25, alpha=0.602, gamma=0.105 , c=0.3)    
+                    MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, num_iterations=self.config.config["maxClassicalOptimizationIterations"], a=0.25, alpha=0.602, gamma=0.166 , c=0.45)    
                 case _:
                     # Default case, use default paramters
                     MinimizeSPSA(self.__RunQuantumCircuit__, gammaGuess + betaGuess, num_iterations=self.config.config["maxClassicalOptimizationIterations"], a=0.15, alpha=0.602, gamma=0.166 , c=0.3)    
